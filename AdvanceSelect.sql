@@ -41,3 +41,13 @@ WITH Ranked AS (
 SELECT Doctor, Actor, Professor, Teacher
 FROM Pivoted
 ORDER BY rn;
+
+
+--Use of Group Concat
+-- This groups all names by occupation into a single row per occupation — not pivoted, but useful.
+
+
+    SELECT occupation,
+           GROUP_CONCAT(name ORDER BY name SEPARATOR ', ') AS names
+    FROM occupations
+    GROUP BY occupation;
