@@ -37,7 +37,7 @@ FROM
     teams t1 
 JOIN teams t2 on t1.team_name < t2.team_name
 
-
+-- cartensian product self join
 SELECT 
     concat(
     t1.team_name," ",

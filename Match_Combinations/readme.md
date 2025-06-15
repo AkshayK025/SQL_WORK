@@ -25,3 +25,24 @@ Number of matches = 4 × (4 - 1) / 2
 - Each team can play against (n - 1) other teams.
 - That results in n × (n - 1) total match directions (e.g., A vs B and B vs A both counted).
 - Since A vs B is the same as B vs A, we divide the total by 2 to avoid duplicates.
+
+### Example
+```sql
+SELECT 
+    concat(
+    t1.team_name," ",
+    t2.team_name
+    )
+FROM
+    teams t1 
+JOIN teams t2 on t1.team_name < t2.team_name
+```
+Output:
+| Match           |
+|------------------|
+| Team A Team B    |
+| Team B Team C    |
+| Team A Team C    |
+| Team C Team D    |
+| Team B Team D    |
+| Team A Team D    |
