@@ -1,4 +1,5 @@
 use project2;
+SHOW tables;
 
 --Hacker Rank Problem
 
