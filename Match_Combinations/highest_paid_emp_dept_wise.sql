@@ -28,3 +28,22 @@ FROM (
     FROM employee
 ) AS ranked
 WHERE rnk = 1;
+
+
+--solution 3 using group by and max()
+SELECT 
+    e.department, 
+    e.name, 
+    e.salary
+FROM 
+    employee e
+JOIN (
+    SELECT 
+        department, 
+        MAX(salary) AS max_salary
+    FROM 
+        employee
+    GROUP BY 
+        department
+    ) m 
+ON e.department = m.department AND e.salary = m.max_salary;
