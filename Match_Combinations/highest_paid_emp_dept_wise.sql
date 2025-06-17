@@ -20,3 +20,11 @@ with cte as (
 SELECT name,salary FROM cte
 where rnk=1;
 
+--solution 2 using subquery
+SELECT department, name, salary
+FROM (
+    SELECT *,
+           RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
+    FROM employee
+) AS ranked
+WHERE rnk = 1;
