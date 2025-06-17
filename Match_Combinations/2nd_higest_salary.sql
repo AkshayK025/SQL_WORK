@@ -24,7 +24,7 @@ INSERT INTO employee (id, name, salary, join_date, department, manager_id) VALUE
 (9, 'Andy',     8200, '2025-04-01', 'Finance',     8);
 
 
--- Retrieve the second highest salary from the employee table.
+-- 1.Retrieve the second highest salary from the employee table.
 
 --Solution
 
@@ -39,7 +39,6 @@ ORDER BY  1 desc
 LIMIT 1 OFFSET 1;
 
 --using dense rank
-
 WITH cte AS (
         SELECT 
             salary,
@@ -53,9 +52,6 @@ FROM
     cte
 WHERE 
     drn=2;
-
-
-
 
 --
 SELECT * 
