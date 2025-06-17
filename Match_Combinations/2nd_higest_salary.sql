@@ -26,15 +26,38 @@ INSERT INTO employee (id, name, salary, join_date, department, manager_id) VALUE
 
 -- Retrieve the second highest salary from the employee table.
 
+--Solution
+
+-- using sub query
 SELECT max(salary) from employee
 WHERE salary < (SELECT max(salary) from employee)
 ;
 
+-- using limit and offset
 SELECT distinct salary from employee
 ORDER BY  1 desc
 LIMIT 1 OFFSET 1;
 
+--using dense rank
 
+WITH cte AS (
+        SELECT 
+            salary,
+            DENSE_RANK() OVER(ORDER BY salary DESC) AS drn 
+        FROM 
+            employee
+)
+SELECT 
+    salary as Second_Highest_Salary 
+FROM 
+    cte
+WHERE 
+    drn=2;
+
+
+
+
+--
 SELECT * 
 FROM employee 
 WHERE name REGEXP '^[AEIOUaeiou].*[AEIOUaeiou]$';
