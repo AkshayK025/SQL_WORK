@@ -1,5 +1,5 @@
 CREATE DATABASE sales
-use sales
+use sales;
 SHOW tables;
 
 -- 1. customers
