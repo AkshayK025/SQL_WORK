@@ -1,5 +1,6 @@
--- logins, sales Tables to perfrom Problem and use db TimeDate
+-- logins, sales are Tables to perfrom Problems and use db TimeDate
 --Problem1 1.Get all records from the last 7 days
+
 SHOW DATABASES;
 use TimeDate;
 show tables;
