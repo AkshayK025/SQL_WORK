@@ -118,6 +118,10 @@ INSERT INTO purchases VALUES
 (4, 2, 6, 2, '2025-02-01', 19500, 21500), -- Bob, Civic again (new year)
 (5, 3, 5, 3, '2023-10-01', 22000, 24000), -- Carol, Bolt
 (6, 4, 4, 4, '2025-03-15', 25000, 27000); -- Dan, F-150
+-- Make sure a customer buys both Corolla and Civic
+-- Assume customer_id 1 exists
+-- Assume vehicle_id 10 is a Corolla, and vehicle_id 11 is a Civic
+
 
 -- 6. Service Records
 CREATE TABLE services (

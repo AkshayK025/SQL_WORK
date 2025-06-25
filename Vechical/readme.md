@@ -267,4 +267,42 @@ This table shows a check for duplicate entries based on email or phone number.
 | Dan Lee      | dan@example.com    | 3456789012  | Not Duplicate    |
 
 ---
+## 📌 Question 6  
+**Find customers who bought both Toyota Corolla and Honda Civic**
 
+---
+
+### ✅ Objective
+
+Identify customers who purchased **at least one** of each:
+- Toyota Corolla
+- Honda Civic
+
+---
+
+### 🧠 Logic
+
+- Filter purchase records for only *Corolla* and *Civic*.
+- Group by customer.
+- Use `COUNT(DISTINCT model_name)` to ensure both models were purchased.
+  - `= 2` means the customer bought both.
+
+---
+
+### 🛠️ SQL Query
+
+```sql
+SELECT 
+    c.full_name
+FROM 
+    customers c
+JOIN purchases p USING(customer_id)
+JOIN vehicles v USING(vehicle_id)
+JOIN models m USING(model_id)
+WHERE 
+    m.model_name IN ('Corolla', 'Civic')
+GROUP BY 
+    c.customer_id, c.full_name
+HAVING 
+    COUNT(DISTINCT m.model_name) = 2;
+```
