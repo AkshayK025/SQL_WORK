@@ -207,3 +207,64 @@ ORDER BY
 | April    | 1                 | 2                           | -50.00%           |
 | May      | 1                 | 1                           | 0.00%             |
 | June     | 2                 | 1                           | 100.00%           |
+
+---
+## 📌 Question 5  
+**Flag older records where customer email and phone are duplicated**
+
+---
+
+### ✅ Objective
+
+Detect and flag **duplicate customer entries** based on matching **email** or **phone number** values. Only the first occurrence should be considered the original, while others are marked as duplicates.
+
+---
+
+### 🧠 Logic
+
+- Use `ROW_NUMBER()` to identify multiple entries with the same email or phone.
+- `ROW_NUMBER() > 1` flags entries that are **not the first occurrence**.
+- Combine both checks using `OR` in a `CASE` statement.
+
+---
+
+### 🛠️ SQL Query
+
+```sql
+WITH cte AS (
+    SELECT
+        full_name, 
+        email,
+        phone,
+        ROW_NUMBER() OVER (PARTITION BY email ORDER BY email) AS rn_mail,
+        ROW_NUMBER() OVER (PARTITION BY phone ORDER BY phone) AS rn_phone
+    FROM 
+        customers
+)
+SELECT 
+    full_name,
+    email,
+    phone,
+    CASE
+        WHEN rn_mail > 1 OR rn_phone > 1 THEN 'Duplicate'
+        ELSE 'Not Duplicate'
+    END AS status
+FROM
+    cte
+ORDER BY
+    full_name;
+```
+## Result:
+## Duplicate Detection Report
+
+This table shows a check for duplicate entries based on email or phone number.
+
+| Full Name    | Email              | Phone       | Duplicate Status |
+|--------------|--------------------|-------------|------------------|
+| Alice Smith  | alice@example.com  | 1234567890  | Not Duplicate    |
+| Bob Johnson  | bob@example.com    | 2345678901  | Not Duplicate    |
+| Carol King   | alice@example.com  | 1234567890  | Duplicate        |
+| Dan Lee      | dan@example.com    | 3456789012  | Not Duplicate    |
+
+---
+
