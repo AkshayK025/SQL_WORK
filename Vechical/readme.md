@@ -97,3 +97,55 @@ HAVING
 | 6          | *(Not Available)* |
 
 ---
+## 📌 Question 3  
+**Get top 3 dealers per region based on profit (revenue - cost) for Q1 2025**
+
+---
+
+### ✅ Objective
+
+Identify the **top 3 dealers in each region** who generated the **most profit** during **Q1 of 2025**. Profit is calculated as the difference between **revenue and cost**.
+
+---
+
+### 🧠 Logic
+
+- Filter purchases to include only those in **Q1 2025**.
+- Aggregate total profit per dealer per region.
+- Use `ROW_NUMBER()` to rank dealers within each region based on profit.
+- Select only the **top 3 per region**.
+
+---
+
+### 🛠️ SQL Query
+
+```sql
+WITH dealer_profits AS (
+    SELECT
+        d.region AS region,
+        d.dealer_name AS dealer,
+        SUM(p.revenue - p.cost) AS total_profit,
+        ROW_NUMBER() OVER (
+            PARTITION BY d.region 
+            ORDER BY SUM(p.revenue - p.cost) DESC
+        ) AS rn
+    FROM purchases p
+    JOIN dealers d USING(dealer_id)
+    WHERE QUARTER(p.purchase_date) = 1
+      AND YEAR(p.purchase_date) = 2025
+    GROUP BY d.region, d.dealer_name
+)
+SELECT 
+    region, 
+    dealer, 
+    total_profit
+FROM dealer_profits
+WHERE rn <= 3;
+```
+## Result:
+| Region | Dealer      | Total Profit |
+|--------|-------------|--------------|
+| South  | SpeedMotors | 2000.00      |
+| West   | DriveAway   | 2000.00      |
+
+---
