@@ -306,3 +306,54 @@ GROUP BY
 HAVING 
     COUNT(DISTINCT m.model_name) = 2;
 ```
+## 📌 Question 7  
+**Get the latest service record for each vehicle along with cost**
+
+---
+
+### ✅ Objective
+
+Return the **most recent service record** for every vehicle in the system, showing the **service date** and the **service cost**.
+
+---
+
+### 🧠 Logic
+
+- Use `ROW_NUMBER()` to rank service records by service date (newest first) for each vehicle.
+- Select only the **latest service record** (`rn = 1`) per vehicle.
+
+---
+
+### 🛠️ SQL Query
+
+```sql
+WITH latest_services AS (
+    SELECT
+        vehicle_id,
+        service_date,
+        service_cost,
+        ROW_NUMBER() OVER (
+            PARTITION BY vehicle_id 
+            ORDER BY service_date DESC
+        ) AS rn
+    FROM 
+        services
+)
+SELECT 
+    vehicle_id,
+    service_date AS latest_service_date,
+    service_cost
+FROM 
+    latest_services
+WHERE 
+    rn = 1;
+```
+### Result:
+This table lists each vehicle's most recent service date and the associated cost.
+
+| Vehicle ID | Latest Service Date | Cost   |
+|------------|----------------------|--------|
+| 1          | 2024-06-01           | 200.00 |
+| 2          | 2023-01-15           | 150.00 |
+| 3          | 2023-06-20           | 180.00 |
+| 5          | 2024-10-10           | 250.00 |
