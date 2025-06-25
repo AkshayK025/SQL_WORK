@@ -149,3 +149,61 @@ WHERE rn <= 3;
 | West   | DriveAway   | 2000.00      |
 
 ---
+## 📌 Question 4  
+**Calculate the month-over-month % growth in service appointments in 2024**
+
+---
+
+### ✅ Objective
+
+Track how service demand changes each month in 2024 by computing the **month-over-month percentage growth** in service appointments.
+
+---
+
+### 🧠 Logic
+
+- Filter records to only include the year 2024.
+- Use `COUNT()` to get monthly totals.
+- Use the `LAG()` window function to compare each month with the previous month.
+- Use `ROUND(...)` and `NULLIF(...)` to compute and format the percentage change safely.
+
+---
+
+### 🛠️ SQL Query
+
+```sql
+WITH cte AS (
+    SELECT 
+        MONTH(appointment_date) AS month_num,
+        MONTHNAME(appointment_date) AS Month,
+        COUNT(appointment_id) AS Total_Appointment
+    FROM 
+        service_appointments
+    WHERE 
+        YEAR(appointment_date) = 2024
+    GROUP BY 
+        MONTH(appointment_date), MONTHNAME(appointment_date)
+)
+SELECT
+    Month, 
+    Total_Appointment,
+    LAG(Total_Appointment) OVER (ORDER BY month_num) AS previous_total_appointment,
+    ROUND(
+        (Total_Appointment - LAG(Total_Appointment) OVER (ORDER BY month_num)) 
+        / NULLIF(LAG(Total_Appointment) OVER (ORDER BY month_num), 0) * 100, 2
+    ) AS percentage_change
+FROM
+    cte
+ORDER BY
+    month_num;
+```
+## Result
+
+| Month    | Total Appointment | Previous Total Appointment | Percentage Change |
+|----------|-------------------|-----------------------------|-------------------|
+| January  | 1                 |                             |                   |
+| February | 1                 | 1                           | 0.00%             |
+| March    | 2                 | 1                           | 100.00%           |
+| April    | 1                 | 2                           | -50.00%           |
+| May      | 1                 | 1                           | 0.00%             |
+| June     | 2                 | 1                           | 100.00%           |
