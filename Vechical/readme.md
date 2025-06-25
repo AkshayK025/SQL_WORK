@@ -1,87 +1,99 @@
-##  Q1. Find customers who purchased the same vehicle model more than once in the same year. 
+# 🚗 Vehicle Dealership Analytics – SQL Query Solutions
 
-# Vehicle Sales Dataset
-
-This dataset represents a simplified vehicle sales system with three core entities:
-
-- **Customers**
-- **Vehicles**
-- **Sales**
-
-It can be used for basic database modeling, queries, or analytics.
+This repository contains SQL queries and sample datasets for analyzing a vehicle dealership business. The dataset is structured in MySQL and supports complex analytical queries related to purchases, services, and customer behavior.
 
 ---
 
-## 📄 Tables
-
-### 1. Customers
-
-Contains basic information about customers.
-
-| Customer ID | Name    |
-|-------------|---------|
-| 1           | Alice   |
-| 2           | Bob     |
-| 3           | Charlie |
+## 📌 Question 1  
+**Find customers who purchased the same vehicle model more than once in the same year.**
 
 ---
 
-### 2. Vehicles
+### ✅ Objective
 
-Details of available vehicle models.
-
-| Vehicle ID | Model           |
-|------------|------------------|
-| 101        | Toyota Corolla   |
-| 102        | Honda Civic      |
-| 103        | Ford Focus       |
+Identify customers who have made multiple purchases of the **same vehicle model** within the **same calendar year**.
 
 ---
 
-### 3. Sales
+### 🧠 Logic
 
-Links customers to vehicles through sale transactions.
+We group the data by:
 
-| Sale ID | Customer ID | Vehicle ID | Sale Date   |
-|---------|-------------|------------|-------------|
-| 1       | 1           | 101        | 2023-01-15  |
-| 2       | 1           | 101        | 2023-06-20  |
-| 3       | 2           | 102        | 2023-03-05  |
-| 4       | 2           | 103        | 2024-07-18  |
-| 5       | 3           | 101        | 2023-04-10  |
-| 6       | 3           | 101        | 2024-01-12  |
+- Customer name  
+- Vehicle model name  
+- Year of purchase  
+
+Then, we use `HAVING COUNT(*) > 1` to filter for customers who purchased the same model more than once in that year.
 
 ---
 
-## 🔍 Example Use Cases
+### 🛠️ SQL Query
 
-- Analyze how many times each customer has purchased a vehicle
-- Track the popularity of specific vehicle models
-- Practice SQL joins between tables
-
----
-
-## 📁 Files
-
-- `customers.csv`
-- `vehicles.csv`
-- `sales.csv`
-
-## Query
 ```sql
-SELECT 
-    c.name,v.model,YEAR(s.sale_date)
+SELECT
+    c.full_name AS name,
+    m.model_name AS model,
+    YEAR(p.purchase_date) AS purchase_year
 FROM 
     customers c
-JOIN sales s USING(customer_id)
+JOIN purchases p USING(customer_id)
 JOIN vehicles v USING(vehicle_id)
+JOIN models m USING(model_id)
 GROUP BY 
-    c.name,s.vehicle_id,v.model,YEAR(s.sale_date)
-Having count(*)>1
+    c.full_name, m.model_name, YEAR(p.purchase_date)
+HAVING 
+    COUNT(*) > 1;
 ```
-##  Result
-| Name  | Model           | Year |
-|-------|------------------|------|
-| Alice | Toyota Corolla   | 2023 |
 
-This table shows customers who purchased the same vehicle model more than once in the same year. 
+## Result
+| Name         | Model   | Purchase Year |
+|--------------|---------|----------------|
+| Alice Smith  | Corolla | 2024           |
+
+---
+## 📌 Question 2  
+**Identify vehicles not serviced in the last 12 months**
+
+---
+
+### ✅ Objective
+
+Find vehicles that either:
+- Have **never been serviced**
+- Or were **last serviced more than 12 months ago**
+
+---
+
+### 🧠 Logic
+
+- Use `LEFT JOIN` to include vehicles with no service history.
+- Use `MAX(service_date)` to get the latest service per vehicle.
+- Filter using `HAVING` to find services older than 12 months or `NULL`.
+
+---
+
+### 🛠️ SQL Query
+
+```sql
+SELECT
+    v.vehicle_id,
+    MAX(s.service_date) AS last_service_date
+FROM 
+    vehicles v
+LEFT JOIN services s USING(vehicle_id)
+GROUP BY v.vehicle_id
+HAVING 
+    MAX(s.service_date) IS NULL
+    OR MAX(s.service_date) < DATE_SUB(CURDATE(), INTERVAL 12 MONTH);
+```
+## Result:
+
+| Vehicle ID | Last Service Date |
+|------------|-------------------|
+| 1          | 2024-06-01        |
+| 2          | 2023-01-15        |
+| 3          | 2023-06-20        |
+| 4          | *(Not Available)* |
+| 6          | *(Not Available)* |
+
+---
