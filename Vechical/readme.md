@@ -3,7 +3,8 @@
 This repository contains SQL queries and sample datasets for analyzing a vehicle dealership business. The dataset is structured in MySQL and supports complex analytical queries related to purchases, services, and customer behavior.
 
 ---
-
+![Database Schema](/Vechical/image/vechicle.png)
+---
 ## 📌 Question 1  
 **Find customers who purchased the same vehicle model more than once in the same year.**
 
