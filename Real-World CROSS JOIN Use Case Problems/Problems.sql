@@ -72,3 +72,40 @@ INSERT INTO colors (color) VALUES
 ('Red'),
 ('Blue'),
 ('Green');
+
+
+-- Problem 3
+/*
+Problem 3: Combine Users and Survey Questions
+Scenario:
+You are building a feedback system. Every user must answer every question in a survey.
+
+Tables:
+users(user_id, name)
+questions(q_id, question_text)
+
+Task:
+Write a query that lists every user paired with every question.
+*/
+
+-- Table 1
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+INSERT INTO users (user_id, name) VALUES
+(1, 'David'),
+(2, 'Eva'),
+(3, 'Frank');
+
+-- Table 2
+CREATE TABLE questions (
+    q_id INT PRIMARY KEY,
+    question_text VARCHAR(100)
+);
+
+INSERT INTO questions (q_id, question_text) VALUES
+(1, 'How satisfied are you with our service?'),
+(2, 'Would you recommend us?'),
+(3, 'How did you hear about us?');
