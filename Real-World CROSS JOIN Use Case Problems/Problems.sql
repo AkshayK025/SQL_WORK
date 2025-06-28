@@ -36,3 +36,39 @@ INSERT INTO weekdays (day) VALUES
 ('Wednesday'),
 ('Thursday'),
 ('Friday');
+
+
+-- Problem 2
+/*
+Problem 2: Create Pricing Table for All Size-Color Combinations
+Scenario:
+A product is sold in different sizes and colors. You want to generate a master table of all possible combinations to assign prices later.
+
+Tables:
+sizes(size) → ('S', 'M', 'L', 'XL')
+colors(color) → ('Red', 'Blue', 'Green')
+
+Task:
+Write a query to return every possible combination of size and color.
+*/
+
+-- Table 1
+CREATE TABLE sizes (
+    size VARCHAR(5)
+);
+
+INSERT INTO sizes (size) VALUES
+('S'),
+('M'),
+('L'),
+('XL');
+
+-- Table 2
+CREATE TABLE colors (
+    color VARCHAR(20)
+);
+
+INSERT INTO colors (color) VALUES
+('Red'),
+('Blue'),
+('Green');
