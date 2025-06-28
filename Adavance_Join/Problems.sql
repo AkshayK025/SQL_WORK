@@ -37,3 +37,28 @@ INSERT INTO employees VALUES
 (5, 'Eve', NULL);
 
 
+-- Table for problem 3
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    country VARCHAR(50)
+);
+
+INSERT INTO customers VALUES
+(1, 'John Doe', 'USA'),
+(2, 'Jane Smith', 'Canada'),
+(3, 'Akira Yamamoto', 'Japan'),
+(4, 'Maria Garcia', 'Mexico');
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE
+);
+
+INSERT INTO orders VALUES
+(101, 1, '2024-01-10'),
+(102, 1, '2024-01-20'),
+(103, 2, '2024-02-15'),
+(104, 3, '2024-03-10');
+-- customer_id 4 has no orders
