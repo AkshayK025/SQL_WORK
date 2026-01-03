@@ -3,6 +3,10 @@
 -- Get the names of employees who do not have a manager 
 -- (i.e., manager_id is NULL or doesn't match any emp_id)
 
+SHOW databases;
+use joins;
+SHOW Tables;
+
 SELECT * FROM employees;
 
 
@@ -15,3 +19,5 @@ FROM
 LEFT JOIN employees e1 ON e.manager_id = e1.emp_id
 WHERE 
     e1.emp_name is NULL
+
+
