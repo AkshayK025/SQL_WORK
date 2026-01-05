@@ -22,7 +22,6 @@ INSERT INTO students VALUES
 (3, 'Kunal', 'Mehta', 19, 'Male', '2023-07-15');
 
 -- Table 2
-
 CREATE TABLE enrollments (
     enrollment_id INT PRIMARY KEY,
     student_id INT,
