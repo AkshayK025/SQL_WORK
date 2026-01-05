@@ -11,3 +11,7 @@ change first_name f_name varchar(50);
 
 ALTER TABLE students
 change f_name first_name varchar(50);
+
+-- modify column first_name datatype to varchar(100)
+ALTER TABLE students
+modify column first_name varchar(100);
