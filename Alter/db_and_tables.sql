@@ -1,6 +1,8 @@
 show databases;
 create database if not exists db_alter;
 use db_alter;
+SELECT DATABASE();
+DROP database db_alter;
 SHOW Tables;
 DROP table students;
 

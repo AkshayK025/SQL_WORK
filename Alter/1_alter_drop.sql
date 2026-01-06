@@ -18,3 +18,26 @@ DROP INDEX fk_student_id;
 ALTER TABLE students
 drop primary key;
 
+
+
+-- drop first_name column from the students table use db_alter
+-- drop foreign key from the table enrollments use db_alter
+-- Drop index from the table enrollments use db_alter
+-- Drop primary key from the table students use db_alter
+
+use db_alter;
+SELECT database();
+show Tables;
+
+ALTER table students
+drop column first_name;
+
+show create table enrollments;
+ALTER table enrollments
+Drop constraint fk_student_id;  -- Drop foreign key fk_student_id;
+
+ALTER table enrollments
+drop index fk_student_id;
+
+ALTER table students
+drop primary key;

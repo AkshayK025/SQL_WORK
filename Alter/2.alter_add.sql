@@ -14,3 +14,39 @@ add index ix_course_id (course_id);
 -- add column to the students table after name column
 ALTER TABLE students
 add column middle_name VARCHAR(50) after first_name;
+
+
+-- Add primary key to the table students and column name student_id  use db_alter
+-- add foreign key to the table enrollments and column name student_id use db_alter
+-- add index to the table enrollments on column course_id use db_alter
+-- add column middle name to the students table after name column
+
+
+ALTER TABLE students
+add constraint pk_student_id primary key(student_id);
+
+ALTER TABLE enrollments
+add constraint fk_student_id foreign key(student_id) references students(student_id);
+
+ALTER TABLE enrollments
+add index (course_id);
+
+ALTER TABLE students
+add column first_namename VARCHAR(50) after student_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
