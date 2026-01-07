@@ -32,7 +32,7 @@ ALTER TABLE enrollments
 add index (course_id);
 
 ALTER TABLE students
-add column first_namename VARCHAR(50) after student_id;
+add column first_namename VARCHAR(50) after student_id
 
 
 

@@ -28,7 +28,6 @@ drop primary key;
 use db_alter;
 SELECT database();
 show Tables;
-
 ALTER table students
 drop column first_name;
 
