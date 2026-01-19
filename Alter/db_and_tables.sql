@@ -9,7 +9,7 @@ DROP table students;
 
 -- Table 1
 
-CREATE TABLE students (
+CREATE TABLE if not exists students (
     student_id INT PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -24,7 +24,7 @@ INSERT INTO students VALUES
 (3, 'Kunal', 'Mehta', 19, 'Male', '2023-07-15');
 
 -- Table 2
-CREATE TABLE enrollments (
+CREATE TABLE if not exists enrollments (
     enrollment_id INT PRIMARY KEY,
     student_id INT,
     course_id INT,
