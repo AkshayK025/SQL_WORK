@@ -4,6 +4,7 @@ use db_alter;
 SELECT DATABASE();
 DROP database db_alter;
 SHOW Tables;
+drop table enrollments;
 DROP table students;
 
 

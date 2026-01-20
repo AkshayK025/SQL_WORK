@@ -75,6 +75,21 @@ add column
 ;
 
 
+-- Add primary key to the table students and column name student_id  use db_alter
+-- add foreign key to the table enrollments and column name student_id use db_alter
+-- add index to the table enrollments on column course_id use db_alter
+-- add column first_name to the students table after student_id column
 
+ALTER TABLE students
+add primary key (student_id);
 
+ALTER TABLE enrollments
+add constraint fk_student_id foreign key(student_id) references students(student_id)
+on delete cascade
+on update cascade;
 
+ALTER TABLE enrollments
+add index ix_course_id (course_id);
+
+ALTER TABLE students
+add column first_name varchar(50) not null after student_id;
