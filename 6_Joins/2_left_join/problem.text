@@ -1,0 +1,30 @@
+🧠 LEFT JOIN Practice Problems
+🟢 Problem 1 (Basic LEFT JOIN)
+Display:
+employee name
+department name
+👉 Requirement:
+Show all employees, even if they don’t belong to any department.
+
+🟢 Problem 2 (LEFT JOIN + NULL Handling)
+Find all employees who do not have a valid department.
+👉 Hint: You’ll need to check for NULL values from the right table.
+
+🟢 Problem 3 (LEFT JOIN with Filtering)
+List all employees and their department names, but:
+Only show departments Engineering and Sales
+Still show employees with no department
+👉 This one tests WHERE vs ON clause behavior 👀
+
+🟢 Problem 4 (LEFT JOIN + COUNT)
+Count how many employees are in each department.
+Include departments with zero employees
+
+🟢 Problem 5 (Real-world style)
+Show:
+employee name
+department name
+hire date
+Sort results by:
+department name (NULLs last)
+hire date (oldest first)
