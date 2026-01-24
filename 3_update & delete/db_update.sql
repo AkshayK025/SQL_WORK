@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS db_update;
 show databases;
 use db_update;
 SELECT database();
+show tables;
+drop table employees,products;
 
 
 
