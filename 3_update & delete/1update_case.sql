@@ -37,9 +37,25 @@ WHEN experience_years BETWEEN 6 and 9 THEN "medium bonus"
 ELSE "High Bonus"
 end
 
+-- Imagine the company gives bonuses based on experience years:
+-- 0–2 years → "No Bonus"
+-- 3–5 years → "Small Bonus"
+-- 6–9 years → "Medium Bonus"
+-- 10+ years → "High Bonus"
+-- You can update bonus_status using CASE.
+-- use table employees
+
+update employees
+set bonus_status = case
+WHEN experience_years < 2 THEN 'no bonus'
+WHEN experience_years BETWEEN 3 and 5 THEN 'small bonus'
+WHEN experience_years BETWEEN 6 and 9 THEN 'Medium bonus'
+ELSE 'high bonus'
+END 
 
 
-
+update employees
+set bonus_status = "pending"
 
 
 

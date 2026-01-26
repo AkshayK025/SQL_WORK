@@ -26,7 +26,18 @@ FROM
 JOIN courses c using(student_id)
 where course_name = 'Math';
 
--- How many courses is Rahul enrolled in?
+
+-- method 2
+SELECT
+    s.student_name,
+    c.course_name
+FROM
+    students s
+JOIN courses c on s.student_id = c.student_id and c.course_name = 'Math';
+
+
+
+-- How many courses is Rahul enrolled in
 SELECT 
     s.student_name, 
     count(c.course_name)
@@ -35,3 +46,5 @@ JOIN courses c using(student_id)
 where s.student_name = 'Rahul'
 group by
     s.student_name;
+
+

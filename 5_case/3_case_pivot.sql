@@ -30,3 +30,14 @@ from weather_reports;
 -- No Rain
 -- Light Rain
 -- Heavy Rain
+
+SELECT * FROM weather_reports;
+
+SELECT 
+    city,
+count(CASE WHEN rainfall = 0 THEN city end) as no_rain,
+count(CASE WHEN rainfall <>0 and rainfall <20   THEN city end) as Light_rain,
+count(CASE WHEN rainfall >20 THEN city end) as Heavy_rain
+ from weather_reports
+ GROUP BY city
+ ;

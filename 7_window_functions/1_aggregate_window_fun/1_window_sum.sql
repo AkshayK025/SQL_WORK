@@ -1,5 +1,7 @@
 -- use tables from db_window_aggregate
 -- SUM(), AVG(), MIN(), MAX(), COUNT() over windows
+use db_window_aggregate;
+show tables;
 
 -- example 1
 SELECT emp_id,sale_amount,

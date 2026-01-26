@@ -16,10 +16,11 @@ SELECT * FROM customers;
 SELECT * FROM orders;
 
 SELECT 
-    c.name 
+    c.name , o.order_id
 FROM 
     customers c
 LEFT JOIN orders o 
-on c.customer_id = o.customer_id
+on c.customer_id = o.customer_id 
+-- and o.order_id is null
 WHERE 
     o.order_id is NULL;

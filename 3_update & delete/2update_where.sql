@@ -15,3 +15,12 @@ where category = "Electronics" and stock > 0;
 update products
 set discount_status ="10% off"
 WHERE stock > 0 and category  ="electronics";
+
+
+-- Scenario: Give discounts "10% off" only for products that are in stock and belong to Electronics:
+update products
+set discount_status = "10% off"
+where stock > 0 and category = 'electronics';
+
+update products
+set discount_status = null;

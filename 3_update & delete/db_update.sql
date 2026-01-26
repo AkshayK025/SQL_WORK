@@ -3,6 +3,7 @@ show databases;
 use db_update;
 SELECT database();
 show tables;
+drop database db_update;
 drop table employees,products;
 
 
