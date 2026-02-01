@@ -21,3 +21,19 @@ WHERE
     e1.emp_name is NULL
 
 
+
+
+--problem 1
+use joins;
+SELECT database();
+SHOW tables;
+describe employees;
+-- Problem:
+-- Get the names of employees who do not have a manager 
+
+SELECT 
+    emp_name,
+    manager_id
+FROM
+     employees
+WHERE manager_id is null;

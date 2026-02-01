@@ -1,0 +1,109 @@
+-- Problem 1
+use joins;
+Table employees
+
+1. Find Employees Without a Manager
+Tables:
+employees(emp_id, emp_name, manager_id)
+Problem:
+Get the names of employees who do not have a manager 
+(i.e., manager_id is NULL or doesn't match any emp_id).
+
+
+2. Self Join to Get Employee & Their Manager Names
+Tables:
+employees(emp_id, emp_name, manager_id)
+
+------------------------------------------------
+
+--p2_solution.sql
+use db_joins & Tables employees
+Problem:
+Get a list of employees along with their manager names (use self join).
+
+--------------------------------------------------
+
+--p3_solution.sql
+use db_joins & Tables customers , orders
+
+List Customers with No Orders
+Tables:
+customers(customer_id, name)
+orders(order_id, customer_id, order_date)
+Problem:
+Fetch all customer names who haven’t placed any order.
+
+--------------------------------------------------------
+
+--p4_solution.sql
+use db_join and Tables customers & orders;
+
+Country with Maximum Orders
+Tables:
+orders(order_id, customer_id)
+customers(customer_id, country)
+
+Problem:
+Find the country that placed the maximum number of orders using joins and GROUP BY.
+
+------------------------------------------------------------------
+
+--p5_solution.sql
+use db_joins and Tables  customers & orders;
+
+Latest Order per Customer
+Tables:
+orders(order_id, customer_id, order_date)
+
+Problem:
+Fetch the most recent order for every customer.
+
+-------------------------------------------------------------------------
+
+--p6_solution.sql
+use db_joins and tables employees, departments
+
+Get Highest Salary in Each Department
+Tables:
+employees(emp_id, name, salary, dept_id)
+departments(dept_id, dept_name)
+
+Problem:
+List the name of each department and the employee with the highest salary in it.
+
+----------------------------------------------------------------------------
+
+--p7_solution.sql
+use db_joins tables employees and departments
+
+Department with More Than 1Employees
+Tables:
+employees(emp_id, dept_id)
+departments(dept_id, dept_name)
+Problem:
+List departments that have more than one  employees.
+
+------------------------------------------------------------------------
+
+--p8_solution.sql
+use db_joins and tables products,sales
+
+Products Never Sold
+Tables:
+products(product_id, product_name)
+sales(sale_id, product_id, quantity)Problem:
+Problem:
+List all products that were never sold.
+
+-------------------------------------------------------------------
+
+--p9_solution.sql
+use db_joins and tables product,sales
+
+Find Top 3 Products by Sales
+Tables:
+products(product_id, product_name)
+sales(sale_id, product_id, quantity)
+
+Problem:
+Get top 3 products based on total quantity sold, including their names.
