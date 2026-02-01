@@ -1,0 +1,64 @@
+*use db_cte and table employee_performance*
+
+🟢 Level 1 — Basics
+Problem 1
+Create a CTE that calculates:
+emp_id
+emp_name
+department
+average performance score per employee
+Then select all employees whose average score is greater than 85.
+
+Problem 2
+Using a CTE:
+Count how many projects each employee has worked on
+Display employees who worked on more than 1 project
+
+Multiple CTEs
+Problem 3
+Using two CTEs:
+First CTE → calculate average salary per department
+Second CTE → list employees with their salary
+Final query → show employees earning above department average
+
+Problem 4
+Using a CTE:
+Calculate maximum performance score per department
+Show only employees whose score equals the department maximum
+(Hint: CTE + join back to table)
+
+
+🟠 Level 3 — Multiple CTEs
+Problem 5
+Using two CTEs:
+First CTE → calculate average salary per department
+Second CTE → list employees with their salary
+Final query → show employees earning above department average
+
+Problem 6
+Create a CTE that:
+Assigns a performance grade using CASE:
+A → score ≥ 90
+B → 80–89
+C → below 80
+Then:
+Display count of employees per grade
+
+Level 4 — Advanced (Interview Favorites)
+Problem 7
+Using a CTE:
+Rank employees by performance_score within each department
+Display only the top performer per department
+(Hint: window function)
+
+Problem 8
+Using a CTE:
+Find employees whose performance improved over time
+(latest score > earliest score)
+(Hint: MIN(date), MAX(date))
+
+Problem 9
+Create a recursive CTE that:
+Generates numbers from 1 to 10
+Then join it with the dataset to:
+Repeat each employee row based on that number (for practice)
